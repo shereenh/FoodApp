@@ -4,7 +4,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.restaurant.foodapp.databinding.ItemMenuBinding
-import com.restaurant.foodapp.databinding.ItemTitleBinding
 
 class MenuAdapter(var menuList: ArrayList<MenuItem>) : RecyclerView.Adapter<MenuAdapter.ViewHolder>(){
 

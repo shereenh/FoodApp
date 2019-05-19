@@ -5,6 +5,7 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.restaurant.foodapp.view.model.DataSource.mainCourseVegList
 import com.restaurant.foodapp.view.model.DataSource.sandwichList
 import com.restaurant.foodapp.view.model.DataSource.startersNonVegList
 import com.restaurant.foodapp.view.model.DataSource.startersVegList
@@ -13,9 +14,8 @@ import com.restaurant.foodapp.view.view.waiter.menu.TitleAdapter
 import com.restaurant.foodapp.view.view.waiter.menu.TitleItem
 import kotlinx.android.synthetic.main.item_order.view.*
 
-class OrderAction(orderItem: OrderItem) : AdapterView.OnItemSelectedListener{
+class OrderAction(var orderItem: OrderItem) : AdapterView.OnItemSelectedListener{
 
-    var orderItem = orderItem
     // edit table name visibility
     var showTableCreation = true
     // button enabled
@@ -36,7 +36,7 @@ class OrderAction(orderItem: OrderItem) : AdapterView.OnItemSelectedListener{
         view.titleRecycler.layoutManager = LinearLayoutManager(context)
         val titleAdapter = TitleAdapter(arrayListOf(TitleItem("Starters - Veg", startersVegList),
             TitleItem("Starters - NonVeg", startersNonVegList),
-            TitleItem("Sandwiches", sandwichList)
+            TitleItem("Sandwiches", sandwichList), TitleItem("Main Course Veg", mainCourseVegList)
         )
             , context)
         view.titleRecycler.adapter = titleAdapter
@@ -63,6 +63,12 @@ class OrderAction(orderItem: OrderItem) : AdapterView.OnItemSelectedListener{
 
     fun deleteOrder(){
         callback.deleteOrderRegistered(orderItem.id)
+    }
+
+    fun titleActionClicked(){
+        showTableCreation = true
+        showMenu = false
+        callback.changeRegistered()
     }
 
     // Menu part

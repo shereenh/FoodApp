@@ -16,4 +16,5 @@
     <string name="minus">-</string>
     <string name="_0">0</string>
     <string name="plus">+</string>
+    <string name="confirm_order">Confirm Order</string>
 </resources>

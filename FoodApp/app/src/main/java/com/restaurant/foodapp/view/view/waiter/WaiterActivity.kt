@@ -55,9 +55,6 @@ class WaiterActivity : AppCompatActivity() {
             R.id.clear -> {showToast("clear selected")}
             R.id.orderHistory -> showToast("history selected")
             R.id.settings -> showToast("settings selected")
-            R.id.remove ->{
-                adapter.deleteOrderAt(1)
-            }
         }
         return true
     }
