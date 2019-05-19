@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <import type="android.view.View"/>
+        <variable name="action"
+                  type="com.restaurant.foodapp.view.view.waiter.order.OrderAction"/>
+    </data>
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+            <LinearLayout android:layout_width="match_parent"
+                          android:layout_height="match_parent"
+                          android:layout_marginStart="16dp"
+                          android:layout_marginEnd="16dp"
+                          android:layout_marginTop="16dp"
+                          android:layout_marginBottom="16dp"
+                          android:orientation="vertical"
+                          android:visibility="@{action.showTableCreation? View.VISIBLE : View.GONE}"
+                          android:id="@+id/initialLinearLayout">
+
+                <Button android:id="@+id/removeTab"
+                        android:text="@string/delete_order"
+                        android:layout_marginTop="4dp"
+                        android:layout_margin="8dp"
+                        android:textSize="24sp"
+                        android:onClick="@{() -> action.deleteOrder()}"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"/>
+
+
+                <TextView android:id="@+id/fragNum"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:text="@{action.orderItem.id}"/>
+
+                <TextView android:id="@+id/orderId"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:text="@{action.orderItem.table}"/>
+
+
+
+                <LinearLayout android:layout_width="match_parent"
+                              android:background="@color/ivory"
+                              android:gravity="center"
+                              android:layout_margin="8dp"
+                              android:layout_height="0dp"
+                              android:orientation="horizontal"
+                              android:layout_weight="1">
+
+                    <TextView android:layout_width="wrap_content"
+                              android:textStyle="bold"
+                              android:layout_marginTop="8dp"
+                              android:layout_marginBottom="8dp"
+                              android:textAlignment="center"
+                              android:textSize="24sp"
+                              android:layout_height="wrap_content"
+                              android:text="@string/select_a_table"/>
+
+                    <Spinner android:layout_width="wrap_content"
+                             android:layout_marginTop="8dp"
+                             android:layout_marginBottom="8dp"
+                             android:layout_marginStart="8dp"
+                             android:layout_gravity="center"
+                             android:backgroundTint="@color/colorAccent"
+                             android:layout_height="30dp"
+                             android:id="@+id/tableSpinner"/>
+                </LinearLayout>
+
+                <Button android:id="@+id/showMenu"
+                        android:text="@string/show_menu"
+                        android:layout_margin="8dp"
+                        android:backgroundTint="@color/spring_green"
+                        android:textSize="24sp"
+                        android:layout_marginTop="4dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:enabled="@{action.showMenuButtonEnabled? true: false}"
+                        android:onClick="@{() -> action.showMenuScreen()}"
+                        android:layout_weight="1"/>
+            </LinearLayout>
+
+
+            <LinearLayout android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:layout_marginStart="16dp"
+                          android:layout_marginEnd="16dp"
+                          android:orientation="vertical"
+                          android:visibility="@{action.showMenu? View.VISIBLE: View.GONE}"
+                          android:id="@+id/menuLinearLayout">
+
+                <Button android:id="@+id/editButton"
+                        android:text="@string/edit_table"
+                        android:layout_marginTop="4dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/titleRecycler"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </ScrollView>
+</layout>
